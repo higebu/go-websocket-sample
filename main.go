@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./chat"
+	"github.com/higebu/go-websocket-sample/chat"
 	"net/http"
 )
 

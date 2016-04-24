@@ -1,8 +1,8 @@
 package chat
 
 import (
-	"code.google.com/p/go.net/websocket"
 	"fmt"
+	"golang.org/x/net/websocket"
 )
 
 type Client struct {
@@ -36,7 +36,9 @@ func (client *Client) Start() {
 
 func (client *Client) Send(message string) {
 	err := websocket.Message.Send(client.ws, message)
-	if err != nil { fmt.Println(message) }
+	if err != nil {
+		fmt.Println(message)
+	}
 }
 
 func (client *Client) Close() {

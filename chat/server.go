@@ -1,12 +1,12 @@
 package chat
 
 import (
-	"code.google.com/p/go.net/websocket"
+	"golang.org/x/net/websocket"
 )
 
 type Server struct {
 	clientCount int
-	clients map[int] *Client
+	clients     map[int]*Client
 	// channels
 	addClientCh    chan *Client
 	removeClientCh chan *Client
@@ -15,8 +15,8 @@ type Server struct {
 
 func NewServer() *Server {
 	return &Server{
-		clientCount:0,
-		clients:map[int] *Client{},
+		clientCount:    0,
+		clients:        map[int]*Client{},
 		addClientCh:    make(chan *Client),
 		removeClientCh: make(chan *Client),
 		messageCh:      make(chan string),
@@ -54,7 +54,7 @@ func (server *Server) Start() {
 }
 
 func (server *Server) WebsocketHandler() websocket.Handler {
-	return websocket.Handler(func (ws *websocket.Conn) {
+	return websocket.Handler(func(ws *websocket.Conn) {
 		client := NewClient(ws, server.removeClientCh, server.messageCh)
 		server.addClientCh <- client
 		client.Start()
