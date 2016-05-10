@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/higebu/go-websocket-sample/chat"
 	"net/http"
+
+	"github.com/higebu/go-websocket-sample/chat"
 )
 
 func main() {
